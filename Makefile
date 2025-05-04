@@ -5,18 +5,14 @@ BUILD_DIR = target
 NWLINK = npx --yes -- nwlink@0.0.16
 LINK_GC = 1
 LTO = 1
+NAME = renderer
 
 define object_for
 $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
 src = $(addprefix src/,\
-  alien.cpp \
-  life.cpp \
-  main.cpp \
-  rocket.cpp \
-  spaceship.cpp \
-  score.cpp \
+	main.cpp
 )
 
 CPPFLAGS = -std=c++11 -fno-exceptions
@@ -40,10 +36,10 @@ LDFLAGS += -flinker-output=nolto-rel
 endif
 
 .PHONY: build
-build: $(BUILD_DIR)/voord.bin
+build: $(BUILD_DIR)/$(NAME).bin
 
 .PHONY: run
-run: $(BUILD_DIR)/voord.nwa
+run: $(BUILD_DIR)/$(NAME).nwa
 	@echo "INSTALL $<"
 	$(Q) $(NWLINK) install-nwa $<
 
@@ -51,7 +47,7 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.nwa
 	@echo "BIN     $@"
 	$(Q) $(NWLINK) nwa-bin $< $@
 
-$(BUILD_DIR)/voord.nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
+$(BUILD_DIR)/$(NAME).nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
 	@echo "LD      $@"
 	$(Q) $(CC) $(CPPFLAGS) $(LDFLAGS) $^ -o $@
 
