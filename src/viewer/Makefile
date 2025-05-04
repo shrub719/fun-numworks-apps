@@ -11,9 +11,7 @@ define object_for
 $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
-src = $(addprefix src/$(NAME)/,\
-	main.cpp \
-)
+src = main.cpp
 
 CPPFLAGS = -std=c++11 -fno-exceptions
 CPPFLAGS += -Os -Wall
