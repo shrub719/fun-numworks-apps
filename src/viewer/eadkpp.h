@@ -1,10 +1,6 @@
 #ifndef EADKPP_H
 #define EADKPP_H
 
-extern "C" {
-#include <eadk.h>
-}
-
 namespace EADK {
 
 class Color {
