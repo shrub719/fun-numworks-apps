@@ -11,3 +11,8 @@ jobs:
         uses: numworks/setup-arm-toolchain@latest
       - name: Run make
         run: make
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: nwa-files
+          path: ./target/*.nwa
