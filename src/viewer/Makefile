@@ -5,13 +5,13 @@ BUILD_DIR = target
 NWLINK = npx --yes -- nwlink@0.0.16
 LINK_GC = 1
 LTO = 1
-NAME = renderer
+NAME = viewer
 
 define object_for
 $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
-src = $(addprefix src/,\
+src = $(addprefix src/$(NAME)/,\
 	main.cpp \
 )
 
