@@ -17,6 +17,7 @@ int main(int argc, char * argv[]) {
     };
     Keyboard::State keyboardState = Keyboard::scan();
 
+    Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
     object.draw();
     while (!keyboardState.keyDown(Keyboard::Key::Back)) {
         keyboardState = Keyboard::scan();
@@ -27,5 +28,6 @@ int main(int argc, char * argv[]) {
             Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
             object.draw();
         }
+        Timing::msleep(20);
     }
 }
