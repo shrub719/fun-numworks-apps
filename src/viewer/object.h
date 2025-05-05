@@ -2,7 +2,7 @@ class Object {
     public:
         Object();
         void rotate(float (&matrix)[3][3]);
-        void toCoords();
+        void to_coords();
         void draw();
         void erase();
     private:

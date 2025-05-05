@@ -1,7 +1,7 @@
-#include <cmath>
 #include "eadkpp.h"
 #include "display.h"
 #include "object.h"
+#include "trig.h"
 using namespace EADK;
 
 
@@ -10,7 +10,7 @@ def rotate_point(rotation, coordinate):
     result = tuple(sum(a * b for a, b in zip(row, coordinate)) for row in rotation)
     return result
 */
-void rotatePoint(float (&point)[3], float (&matrix)[3][3]) {
+void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
     float result[3];
     for (int i = 0; i < 3; i++) {
         int sum = 0;
@@ -26,8 +26,9 @@ void rotatePoint(float (&point)[3], float (&matrix)[3][3]) {
 
 Object::Object() {
     for (int i = 0; i < 32; i++) {
-        points[i][0] = i*0.2;  // sin/cos doesn't work in nwlink
-        points[i][1] = i*0.2;
+        float t = i * 0.2f;
+        points[i][0] = std::sin(t);
+        points[i][1] = std::cos(t);
         points[i][2] = -0.15f;
     }
     for (int i = 32; i < 62; i++) {
@@ -37,12 +38,12 @@ Object::Object() {
     }
     scale = 50;
     size = 5;
-    toCoords();
+    to_coords();
 }
 
 void Object::rotate(float (&matrix)[3][3]) {
     for (float (&point)[3] : points) {
-        rotatePoint(point, matrix);
+        rotate_point(point, matrix);
     }
 }
 
@@ -59,7 +60,7 @@ s = size // 2
     for x, y, c in coords:
         fill_rect(x-s, y-s, size, size, c)
 */
-void Object::toCoords() {
+void Object::to_coords() {
     for (int i = 0; i < 62; i++) {
         int x = 160 + scale * points[i][0];
         int y = 120 + scale * points[i][1];
@@ -72,7 +73,7 @@ void Object::toCoords() {
 
 void Object::draw() {
     int s = size / 2;
-    toCoords();
+    to_coords();
     for (int (&coord)[3] : coords) {
         int x = coord[0];
         int y = coord[1];
