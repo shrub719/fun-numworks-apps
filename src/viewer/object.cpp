@@ -84,3 +84,18 @@ void Object::draw() {
 void Object::erase() {
 
 }
+
+void Object::get_properties(Keyboard::State keyboardState) {
+    if (keyboardState.keyDown(Keyboard::Key::Plus)) {
+        scale += 1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Minus)) {
+        scale -= 1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Multiplication)) {
+        size += 1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Division)) {
+        size -= 1;
+    }
+}
