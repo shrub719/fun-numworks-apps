@@ -27,8 +27,8 @@ void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
 Object::Object() {
     for (int i = 0; i < 32; i++) {
         float t = i * 0.2f;
-        points[i][0] = std::sin(t);
-        points[i][1] = std::cos(t);
+        points[i][0] = approx_sin(t);
+        points[i][1] = approx_cos(t);
         points[i][2] = -0.15f;
     }
     for (int i = 32; i < 62; i++) {
