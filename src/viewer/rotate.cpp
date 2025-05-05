@@ -2,8 +2,9 @@
 #include "trig.h"
 using namespace EADK;
 
-const float s = approx_sin(0.05);
-const float c = approx_cos(0.05);
+const float a = 0.05;
+const float s = approx_sin(a);
+const float c = approx_cos(a);
 
 /* 
 def matrix_mul(A, B):
@@ -30,10 +31,20 @@ void matrix_mul(float (&multiplier)[3][3], float (&matrix)[3][3]) {
 }
 
 void get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (i == j) {
+                matrix[i][j] = 1.0f;
+            } else {
+                matrix[i][j] = 0.0f;
+            }
+        }
+    }
+
     float r[3][3] = {
         {1.0f, 0.0f, 0.0f},
-        {0.0f, c, -s},
-        {0.0f, s, c}
+        {0.0f, 0.809f, -0.588f},
+        {0.0f, 0.588f, 0.809f}
     };
     if (keyboardState.keyDown(Keyboard::Key::Up)) {
         matrix_mul(r, matrix);
