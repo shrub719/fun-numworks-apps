@@ -103,17 +103,25 @@ void Object::erase() {
 
 }
 
-void Object::get_properties(Keyboard::State keyboardState) {
+bool Object::get_properties(Keyboard::State keyboardState) {
+    bool update = false;
+    
     if (keyboardState.keyDown(Keyboard::Key::Plus)) {
+        update = true;
         scale += 1;
     }
     if (keyboardState.keyDown(Keyboard::Key::Minus)) {
+        update = true;
         scale -= 1;
     }
     if (keyboardState.keyDown(Keyboard::Key::Multiplication)) {
+        update = true;
         size += 1;
     }
     if (keyboardState.keyDown(Keyboard::Key::Division)) {
+        update = true;
         size -= 1;
     }
+
+    return update;
 }
