@@ -41,8 +41,21 @@ Object::Object() {
 }
 
 void Object::rotate(float (&matrix)[3][3]) {
-    for (float (&point)[3] : points) {
-        rotate_point(point, matrix);
+    rotate_point(points[0], matrix);
+    for (int i = 1; i < 62; i++) {
+        rotate_point(points[i], matrix);
+        float key[3] = {points[i][0], points[i][1], points[i][2]};
+        int j = i - 1;
+
+        while (j >= 0 && points[j][2] > key[2]) {
+            points[j + 1][0] = points[j][0];
+            points[j + 1][1] = points[j][1];
+            points[j + 1][2] = points[j][2];
+            j -= 1;
+        }
+        points[j + 1][0] = key[0];
+        points[j + 1][1] = key[1];
+        points[j + 1][2] = key[2];
     }
 }
 
