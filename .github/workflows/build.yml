@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Install C++ toolchain
         uses: numworks/setup-arm-toolchain@latest
-      - name: Run make
+      - name: Run make (3D Viewer)
         run: cd src/viewer && make
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: nwa-files
-          path: target/*.nwa
+          path: src/**/*.nwa
