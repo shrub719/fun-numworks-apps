@@ -6,11 +6,6 @@ using namespace EADK;
 // const float s = approx_sin(a);
 // const float c = approx_cos(a);
 
-/* 
-def matrix_mul(A, B):
-    result = [tuple(sum(a*b for a,b in zip(A_row,B_col)) for B_col in zip(*B)) for A_row in A]
-    return result
-*/
 void matrix_mul(float (&multiplier)[3][3], float (&matrix)[3][3]) {
     float result[3][3];
     for (int i = 0; i < 3; i++) {
@@ -30,6 +25,34 @@ void matrix_mul(float (&multiplier)[3][3], float (&matrix)[3][3]) {
     }
 }
 
+bool get_input(int (&input)[3], Keyboard::State keyboardState) {
+    int x = 0;
+    int y = 0;
+    int z = 0;
+
+    if (keyboardState.keyDown(Keyboard::Key::Up)) {
+        x = 1;
+    } else if (keyboardState.keyDown(Keyboard::Key::Down)) {
+        x = -1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Right)) {
+        y = 1;
+    } else if (keyboardState.keyDown(Keyboard::Key::Left)) {
+        y = -1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Alpha)) {
+        z = 1;
+    } else if (keyboardState.keyDown(Keyboard::Key::Shift)) {
+        z = -1;
+    }
+    
+    input[0] = x;
+    input[1] = y;
+    input[2] = z;
+
+    return (x != 0) || (y != 0) || (z != 0);
+}
+
 bool get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -40,13 +63,19 @@ bool get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
             }
         }
     }
+    
+    int input[3];
+    bool update = get_input(input, keyboardState);
+    float S = approx_sin(0.02f);
+    float C = approx_cos(0.02f);
 
-    bool update = false;
-    float s = approx_sin(0.05f);
-    float c = approx_cos(0.05f);
+    if (input[0] != 0) {
+        float s = S;
+        float c = C;
+        if (input[0] == -1) {
+            s = -s;
+        }
 
-    if (keyboardState.keyDown(Keyboard::Key::Up)) {
-        update = true;
         float r[3][3] = {
             {1.0f, 0.0f, 0.0f},
             {0.0f, c, -s},
@@ -54,12 +83,31 @@ bool get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
         };
         matrix_mul(r, matrix);
     }
-    if (keyboardState.keyDown(Keyboard::Key::Right)) {
-        update = true;
+    if (input[1] != 0) {
+        float s = S;
+        float c = C;
+        if (input[1] == -1) {
+            s = -s;
+        }
+
         float r[3][3] = {
             {c, 0.0f, s},
             {0.0f, 1.0f, 0.0f},
             {-s, 0.0f, c}
+        };
+        matrix_mul(r, matrix);
+    }
+    if (input[2] != 0) {
+        float s = S;
+        float c = C;
+        if (input[2] == -1) {
+            s = -s;
+        }
+
+        float r[3][3] = {
+            {c, -s, 0.0f},
+            {s, c, 0.0f},
+            {0.0f, 0.0f, 1.0f}
         };
         matrix_mul(r, matrix);
     }
