@@ -25,4 +25,6 @@ Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numwork
 `D-Pad`: pitch & yaw  
 `SHIFT / ALPHA`: roll  
 `- / +`: scale  
-`÷ / ×`: point size 
+`÷ / ×`: point size  
+`i / , / ^`: increase R/G/B  
+`π / √ / ²`: decrease R/G/B

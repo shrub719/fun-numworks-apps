@@ -149,14 +149,14 @@ bool Object::get_properties(Keyboard::State keyboardState) {
     if (keyboardState.keyDown(Keyboard::Key::Pi)) {
         update = true;
         color_edit(0, -speed);
-    } else if (keyboardState.keyDown(Keyboard::Key::Comma)) {
+    } else if (keyboardState.keyDown(Keyboard::Key::Imaginary)) {
         update = true;
         color_edit(0, speed);
     }
     if (keyboardState.keyDown(Keyboard::Key::Sqrt)) {
         update = true;
         color_edit(1, -speed);
-    } else if (keyboardState.keyDown(Keyboard::Key::Imaginary)) {
+    } else if (keyboardState.keyDown(Keyboard::Key::Comma)) {
         update = true;
         color_edit(1, speed);
     }
