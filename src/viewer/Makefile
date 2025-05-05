@@ -14,6 +14,7 @@ endef
 src = main.cpp \
 	  object.cpp \
 	  trig.cpp \
+	  rotate.cpp \
 	  icon.png
 
 CPPFLAGS = -std=c++11 -fno-exceptions
