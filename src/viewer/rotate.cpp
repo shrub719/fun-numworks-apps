@@ -30,13 +30,6 @@ void matrix_mul(float (&multiplier)[3][3], float (&matrix)[3][3]) {
 }
 
 void get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
-    /*
-    r = [
-            (1, 0, 0),
-            (0, c, -s),
-            (0, s, c)
-        ]
-    */
     float r[3][3] = {
         {1.0f, 0.0f, 0.0f},
         {0.0f, c, -s},

@@ -12,12 +12,11 @@ def rotate_point(rotation, coordinate):
 */
 void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
     float result[3];
-    for (int i = 0; i < 3; i++) {
-        int sum = 0;
-        for (int j = 0; j < 3; j++) {
-            sum += point[j] * matrix[i][j];
+    for (int i = 0; i < 3; ++i) {
+        result[i] = 0.0f;
+        for (int j = 0; j < 3; ++j) {
+            result[i] += matrix[i][j] * point[j];
         }
-        result[i] = sum;
     }
     point[0] = result[0];
     point[1] = result[1];

@@ -18,9 +18,9 @@ int main(int argc, char * argv[]) {
 
     while (!keyboardState.keyDown(Keyboard::Key::Back)) {
         keyboardState = Keyboard::scan();
+        get_rotation(matrix, keyboardState);
         object.rotate(matrix);
         Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
-        get_rotation(matrix, keyboardState);
         object.draw();
     }
 }
