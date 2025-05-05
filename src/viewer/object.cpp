@@ -70,6 +70,10 @@ void Object::to_coords() {
     }
 }
 
+/*
+c = (point[2] + 3) / 5 * 255
+    return round(x), round(y), (COLOUR[0]*c, COLOUR[1]*c, COLOUR[2]*c)
+*/
 void Object::draw() {
     int s = size / 2;
     to_coords();
@@ -77,7 +81,8 @@ void Object::draw() {
         int x = coord[0];
         int y = coord[1];
         int c = coord[2];
-        Display::pushRectUniform(Rect(x-s, y-s, size, size), Color(0x000000));
+        int color = c * 65536 + c * 256 + c;
+        Display::pushRectUniform(Rect(x-s, y-s, size, size), Color(color));
     }
 }
 
