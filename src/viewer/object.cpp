@@ -41,11 +41,10 @@ void Object::load_object(int id) {
             }
             break;
         case 2:
-            length = 60;
             int i = 0;
             for (int a = -1; a <= 1; a += 2) {
                 for (int b = -1; b <= 1; b += 2) {
-                    for (float c = -1; c <= 1; c+= 0.5) {
+                    for (float c = -1.0f; c <= 1.0f; c += 0.4f) {
                         points[i][0] = a;
                         points[i][1] = b;
                         points[i][2] = c;
@@ -61,6 +60,7 @@ void Object::load_object(int id) {
                     }
                 }
             }
+            length = i;
     }
 }
 

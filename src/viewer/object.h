@@ -9,8 +9,8 @@ class Object {
         void draw();
         bool get_properties(EADK::Keyboard::State keyboardState);
     private:
-        float points[70][3];
-        int coords[70][3];
+        float points[100][3];
+        int coords[100][3];
         int length;
         int scale;
         int size;
