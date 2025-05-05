@@ -15,4 +15,14 @@ A collection of fun third-party apps for the NumWorks calculator.
 
 ## Apps
 
-WIP!
+### 3D Viewer
+
+[Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/viewer.nwa)
+
+A 3D object viewer which can rotate and scale an object.  
+Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numworks-scripts?tab=readme-ov-file#renderer).
+
+`D-Pad`: pitch & yaw  
+`SHIFT / ALPHA`: roll  
+`- / +`: scale  
+`÷ / ×`: point size 
