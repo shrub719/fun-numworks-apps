@@ -8,9 +8,11 @@ class Object {
         void to_coords();
         void draw();
         bool get_properties(EADK::Keyboard::State keyboardState);
+        void color_edit(int value, float increaseBy);
     private:
         float points[100][3];
         int coords[100][3];
+        float color[3];
         int length;
         int scale;
         int size;

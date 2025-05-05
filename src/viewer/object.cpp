@@ -19,6 +19,9 @@ void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
 
 Object::Object() {
     load_object(1);
+    color[0] = 1.0f;
+    color[1] = 1.0f;
+    color[2] = 1.0f;
     scale = 50;
     size = 5;
     to_coords();
@@ -101,14 +104,18 @@ void Object::draw() {
         int x = coords[i][0];
         int y = coords[i][1];
         int c = coords[i][2];
-        int color = c * 65536 + c * 256 + c;
-        Display::pushRectUniform(Rect(x-s, y-s, size, size), Color(color));
+        int r = color[0] * c;
+        int g = color[1] * c;
+        int b = color[2] * c;
+        int value = r * 65536 + g * 256 + b;
+        Display::pushRectUniform(Rect(x-s, y-s, size, size), Color(value));
     }
 }
 
 bool Object::get_properties(Keyboard::State keyboardState) {
     bool update = false;
 
+    // scale
     if (keyboardState.keyDown(Keyboard::Key::Plus)) {
         update = true;
         scale += 1;
@@ -117,6 +124,8 @@ bool Object::get_properties(Keyboard::State keyboardState) {
         update = true;
         scale -= 1;
     }
+    
+    // size
     if (keyboardState.keyDown(Keyboard::Key::Multiplication)) {
         update = true;
         size += 1;
@@ -125,6 +134,8 @@ bool Object::get_properties(Keyboard::State keyboardState) {
         update = true;
         size -= 1;
     }
+
+    // object type
     if (keyboardState.keyDown(Keyboard::Key::One)) {
         update = true;
         load_object(1);
@@ -133,5 +144,38 @@ bool Object::get_properties(Keyboard::State keyboardState) {
         load_object(2);
     }
 
+    // color
+    float speed = 0.05f;
+    if (keyboardState.keyDown(Keyboard::Key::Pi)) {
+        update = true;
+        color_edit(0, -speed);
+    } else if (keyboardState.keyDown(Keyboard::Key::Comma)) {
+        update = true;
+        color_edit(0, speed);
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Sqrt)) {
+        update = true;
+        color_edit(1, -speed);
+    } else if (keyboardState.keyDown(Keyboard::Key::Imaginary)) {
+        update = true;
+        color_edit(1, speed);
+    }
+    if (keyboardState.keyDown(Keyboard::Key::Square)) {
+        update = true;
+        color_edit(2, -speed);
+    } else if (keyboardState.keyDown(Keyboard::Key::Power)) {
+        update = true;
+        color_edit(2, speed);
+    }
+
     return update;
+}
+
+void Object::color_edit(int value, float increaseBy) {
+    color[value] += increaseBy;
+    if (color[value] <= 0.0f) {
+        color[value] = 0.0f;
+    } else if (color[value] >= 1.0f) {
+        color[value] = 1.0f;
+    }
 }
