@@ -12,6 +12,7 @@ $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
 src = main.cpp \
+	  object.cpp \
 	  icon.png
 
 CPPFLAGS = -std=c++11 -fno-exceptions
