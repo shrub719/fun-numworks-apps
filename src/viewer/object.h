@@ -3,6 +3,7 @@
 class Object {
     public:
         Object();
+        void load_object(int id);
         void rotate(float (&matrix)[3][3]);
         void to_coords();
         void draw();

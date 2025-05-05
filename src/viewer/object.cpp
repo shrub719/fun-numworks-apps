@@ -18,21 +18,50 @@ void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
 }
 
 Object::Object() {
-    length = 62;
-    for (int i = 0; i < 32; i++) {
-        float t = i * 0.2f;
-        points[i][0] = approx_sin(t);
-        points[i][1] = approx_cos(t);
-        points[i][2] = -0.15f;
-    }
-    for (int i = 32; i < 62; i++) {
-        points[i][0] = points[i-32][0];
-        points[i][1] = points[i-32][1];
-        points[i][2] = 0.15f;
-    }
+    load_object(1);
     scale = 50;
     size = 5;
     to_coords();
+}
+
+void Object::load_object(int id) {
+    switch (id) {
+        case 1:
+            length = 62;
+            for (int i = 0; i < 32; i++) {
+                float t = i * 0.2f;
+                points[i][0] = approx_sin(t);
+                points[i][1] = approx_cos(t);
+                points[i][2] = -0.15f;
+            }
+            for (int i = 32; i < 62; i++) {
+                points[i][0] = points[i-32][0];
+                points[i][1] = points[i-32][1];
+                points[i][2] = 0.15f;
+            }
+            break;
+        case 2:
+            length = 60;
+            int i = 0;
+            for (int a = -1; a <= 1; a += 2) {
+                for (int b = -1; b <= 1; b += 2) {
+                    for (float c = -1; c <= 1; c+= 0.5) {
+                        points[i][0] = a;
+                        points[i][1] = b;
+                        points[i][2] = c;
+                        i++;
+                        points[i][0] = a;
+                        points[i][1] = c;
+                        points[i][2] = b;
+                        i++;
+                        points[i][0] = c;
+                        points[i][1] = a;
+                        points[i][2] = b;
+                        i++;
+                    }
+                }
+            }
+    }
 }
 
 void Object::rotate(float (&matrix)[3][3]) {
@@ -95,6 +124,13 @@ bool Object::get_properties(Keyboard::State keyboardState) {
     if (keyboardState.keyDown(Keyboard::Key::Division)) {
         update = true;
         size -= 1;
+    }
+    if (keyboardState.keyDown(Keyboard::Key::One)) {
+        update = true;
+        load_object(1);
+    } else if (keyboardState.keyDown(Keyboard::Key::Two)) {
+        update = true;
+        load_object(2);
     }
 
     return update;
