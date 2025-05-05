@@ -2,9 +2,9 @@
 #include "trig.h"
 using namespace EADK;
 
-const float a = 0.05;
-const float s = approx_sin(a);
-const float c = approx_cos(a);
+// const float a = 0.05;
+// const float s = approx_sin(a);
+// const float c = approx_cos(a);
 
 /* 
 def matrix_mul(A, B):
@@ -30,7 +30,7 @@ void matrix_mul(float (&multiplier)[3][3], float (&matrix)[3][3]) {
     }
 }
 
-void get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
+bool get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (i == j) {
@@ -41,12 +41,28 @@ void get_rotation(float (&matrix)[3][3], Keyboard::State keyboardState) {
         }
     }
 
-    float r[3][3] = {
-        {1.0f, 0.0f, 0.0f},
-        {0.0f, 0.809f, -0.588f},
-        {0.0f, 0.588f, 0.809f}
-    };
+    bool update = false;
+    float s = approx_sin(0.05f);
+    float c = approx_cos(0.05f);
+
     if (keyboardState.keyDown(Keyboard::Key::Up)) {
+        update = true;
+        float r[3][3] = {
+            {1.0f, 0.0f, 0.0f},
+            {0.0f, c, -s},
+            {0.0f, s, c}
+        };
         matrix_mul(r, matrix);
     }
+    if (keyboardState.keyDown(Keyboard::Key::Right)) {
+        update = true;
+        float r[3][3] = {
+            {c, 0.0f, s},
+            {0.0f, 1.0f, 0.0f},
+            {-s, 0.0f, c}
+        };
+        matrix_mul(r, matrix);
+    }
+
+    return update;
 }
