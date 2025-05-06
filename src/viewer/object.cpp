@@ -47,7 +47,7 @@ void Object::load_object(int id) {
             int i = 0;
             for (int a = -1; a <= 1; a += 2) {
                 for (int b = -1; b <= 1; b += 2) {
-                    for (float c = -1.0f; c <= 1.0f; c += 0.4f) {
+                    for (float c = -1.0f; c <= 1.0f; c += 0.2f) {
                         points[i][0] = a;
                         points[i][1] = b;
                         points[i][2] = c;

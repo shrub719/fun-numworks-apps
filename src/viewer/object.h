@@ -10,8 +10,8 @@ class Object {
         bool get_properties(EADK::Keyboard::State keyboardState);
         void color_edit(int value, float increaseBy);
     private:
-        float points[100][3];
-        int coords[100][3];
+        float points[200][3];
+        int coords[200][3];
         float color[3];
         int length;
         int scale;
