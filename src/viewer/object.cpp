@@ -30,14 +30,14 @@ Object::Object() {
 void Object::load_object(int id) {
     switch (id) {
         case 1:
-            length = 62;
+            length = 64;
             for (int i = 0; i < 32; i++) {
                 float t = i * 0.2f;
-                points[i][0] = approx_sin(t);
-                points[i][1] = approx_cos(t);
+                points[i][0] = better_sin(t);
+                points[i][1] = better_cos(t);
                 points[i][2] = -0.15f;
             }
-            for (int i = 32; i < 62; i++) {
+            for (int i = 32; i < 64; i++) {
                 points[i][0] = points[i-32][0];
                 points[i][1] = points[i-32][1];
                 points[i][2] = 0.15f;
