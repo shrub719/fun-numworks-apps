@@ -18,12 +18,12 @@ void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
 }
 
 Object::Object() {
-    load_object(1);
-    color[0] = 1.0f;
+    load_object(2);
+    color[0] = 0.0f;
     color[1] = 1.0f;
-    color[2] = 1.0f;
+    color[2] = 0.2f;
     scale = 50;
-    size = 5;
+    size = 25;
     to_coords();
 }
 
