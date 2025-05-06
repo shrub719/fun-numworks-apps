@@ -21,7 +21,7 @@ Object::Object() {
     load_object(2);
     color[0] = 0.0f;
     color[1] = 1.0f;
-    color[2] = 0.2f;
+    color[2] = 0.5f;
     scale = 50;
     size = 25;
     to_coords();
