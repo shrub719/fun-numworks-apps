@@ -12,7 +12,7 @@ jobs:
       - name: Run make (3D Viewer)
         run: cd src/viewer && make
       - name: Run make (Canvas)
-        run: cd ../canvas && make
+        run: cd /../canvas && make
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
