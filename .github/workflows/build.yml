@@ -10,7 +10,7 @@ jobs:
       - name: Install C++ toolchain
         uses: numworks/setup-arm-toolchain@latest
       - name: Run make (3D Viewer)
-        run: cd src/viewer && make
+        run: cd src/points && make
       - name: Run make (Canvas)
         run: cd src/canvas && make
       - name: Upload build artifacts

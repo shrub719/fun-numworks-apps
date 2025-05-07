@@ -5,7 +5,7 @@ BUILD_DIR = target
 NWLINK = npx --yes -- nwlink@0.0.19
 LINK_GC = 1
 LTO = 1
-NAME = viewer
+NAME = points
 
 define object_for
 $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
