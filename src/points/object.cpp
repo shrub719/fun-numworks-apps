@@ -23,7 +23,7 @@ Object::Object() {
     color[1] = 1.0f;
     color[2] = 0.5f;
     scale = 50;
-    size = 25;
+    size = 15;
     to_coords();
 }
 
