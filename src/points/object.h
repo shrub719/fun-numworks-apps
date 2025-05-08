@@ -1,3 +1,6 @@
+#ifndef OBJECT_H
+#define OBJECT_H
+
 #include "eadkpp.h"
 
 class Object {
@@ -17,3 +20,5 @@ class Object {
         int scale;
         int size;
 };
+
+#endif
