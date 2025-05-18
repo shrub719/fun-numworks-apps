@@ -17,7 +17,7 @@ A collection of fun third-party apps for the NumWorks calculator.
 
 ### 3D Points
 
-[Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/points".nwa)
+[Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/points.nwa)
 
 A 3D object viewer which can rotate and scale a collection of points.  
 Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numworks-scripts?tab=readme-ov-file#renderer). Now with 4x the points!
@@ -34,6 +34,7 @@ Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numwork
 `π / √ / ²`: decrease R/G/B
 
 `1 / 2`: load donut/cube
+
 
 ### Canvas
 
@@ -57,3 +58,8 @@ Adapted from my [Canvas Python script](https://github.com/shrub719/fun-numworks-
 #### Credits
 
 Huge thanks to Nwagyu for [NumWorks Extapp Storage](https://framagit.org/Yaya.Cout/numworks-extapp-storage/)!
+
+
+### Not Calculation
+
+[Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/not_calc.nwa)
