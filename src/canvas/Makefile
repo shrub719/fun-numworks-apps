@@ -14,23 +14,31 @@ endef
 src = main.cpp \
 	  save-load.cpp \
 	  ui.cpp \
-	  storage.cpp \
+	  storage.c \
 	  icon.png
 
 CPPFLAGS = -std=c++11 -fno-exceptions
 CPPFLAGS += -Os -Wall
 CPPFLAGS += $(shell $(NWLINK) eadk-cflags-device)
+CFLAGS = -std=c99
+CFLAGS += $(shell $(NWLINK) eadk-cflags-device)
+CFLAGS += -Os -Wall
+CFLAGS += -ggdb
 LDFLAGS = -Wl,--relocatable
 LDFLAGS += -nostartfiles
 LDFLAGS += --specs=nano.specs
 
 ifeq ($(LINK_GC),1)
+CFLAGS += -fdata-sections -ffunction-sections
 CPPFLAGS += -fdata-sections -ffunction-sections
 LDFLAGS += -Wl,-e,main -Wl,-u,eadk_app_name -Wl,-u,eadk_app_icon -Wl,-u,eadk_api_level
 LDFLAGS += -Wl,--gc-sections
 endif
 
 ifeq ($(LTO),1)
+CFLAGS += -flto -fno-fat-lto-objects
+CFLAGS += -fwhole-program
+CFLAGS += -fvisibility=internal
 CPPFLAGS += -flto -fno-fat-lto-objects
 CPPFLAGS += -fwhole-program
 CPPFLAGS += -fvisibility=internal
@@ -52,6 +60,10 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.nwa
 $(BUILD_DIR)/$(NAME).nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
 	@echo "LD      $@"
 	$(Q) $(CC) $(CPPFLAGS) $(LDFLAGS) $^ -o $@
+
+$(addprefix $(BUILD_DIR)/,%.o): %.c | $(BUILD_DIR)
+	@echo "C       $^"
+	$(Q) $(CC) $(CFLAGS)$(SFLAGS) -c $^ -o $@
 
 $(addprefix $(BUILD_DIR)/,%.o): %.cpp | $(BUILD_DIR)
 	@echo "CXX     $^"
