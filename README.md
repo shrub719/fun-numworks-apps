@@ -41,7 +41,8 @@ Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numwork
 [Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/canvas.nwa)
 
 A canvas that you can draw on.
-Adapted from my [Canvas Python script](https://github.com/shrub719/fun-numworks-scripts?tab=readme-ov-file#canvas). Now with saving and loading! (hopefully)
+Adapted from my [Canvas Python script](https://github.com/shrub719/fun-numworks-scripts?tab=readme-ov-file#canvas).  
+Now with saving and loading!
 
 #### Controls
 
