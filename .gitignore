@@ -34,3 +34,4 @@
 target
 .vscode
 release.md
+.venv
