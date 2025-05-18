@@ -2,6 +2,7 @@
 #include "eadkpp.h"
 #include "object.h"
 #include "rotate.h"
+#include <eadk.h>
 using namespace EADK;
 
 extern const char eadk_app_name[] __attribute__((section(".rodata.eadk_app_name"))) = "3D Points";
@@ -28,6 +29,6 @@ int main(int argc, char * argv[]) {
             Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
             object.draw();
         }
-        Timing::msleep(20);
+        eadk_display_wait_for_vblank();
     }
 }
