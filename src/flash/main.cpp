@@ -18,20 +18,19 @@ void SVC_ATTRIBUTES setLock(bool locked) {
     SVC_RETURNING_VOID(58)
 }
 
-/* void SVC_ATTRIBUTES setBlinking(uint16_t periodInMilliseconds, float dutyCycle) {
+void SVC_ATTRIBUTES setBlinking(uint16_t periodInMilliseconds, float dutyCycle) {
     SVC_RETURNING_VOID(36)
-} */
+}
 
 
 int main(int argc, char * argv[]) {
     Keyboard::State keyboardState = Keyboard::scan();
     Color white = Color(0xFFFFFF);
 
-    setLock(false);
     setColor(white);
-    // setBlinking(1000, 0.1f);
 
     while (!keyboardState.keyDown(Keyboard::Key::Back)) {
         keyboardState = Keyboard::scan();
+        setColor(white);
     }
 }
