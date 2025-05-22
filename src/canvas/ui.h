@@ -30,6 +30,7 @@ class Bar {
         void update_message(char text[]);
     private:
         cursorColor color;
+        const int height = 18;
 };
 
 #endif

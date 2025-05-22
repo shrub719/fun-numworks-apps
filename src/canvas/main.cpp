@@ -1,5 +1,5 @@
 #include "eadkpp.h"
-#include "save-load.h"
+#include "canvas.h"
 using namespace EADK;
 
 extern const char eadk_app_name[] __attribute__((section(".rodata.eadk_app_name"))) = "Canvas";
@@ -11,11 +11,6 @@ int main(int argc, char * argv[]) {
     Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
     
     while (!keyboardState.keyDown(Keyboard::Key::Back)) {
-        keyboardState = Keyboard::scan();
-    }
-    save_canvas(1);     // crashes calculator sometimes
-                        // (why sometimes? don't tell me garbage collection is still an issue)
-    while (!keyboardState.keyDown(Keyboard::Key::One)) {
         keyboardState = Keyboard::scan();
     }
 }
