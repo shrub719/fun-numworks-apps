@@ -20,7 +20,7 @@ int main(int argc, char * argv[]) {
 
     Display::pushRectUniform(Screen::Rect, Color(0xFFFFFF));
     object.draw();
-    while (!keyboardState.keyDown(Keyboard::Key::Back)) {
+    while (!keyboardState.keyDown(Keyboard::Key::Home)) {
         keyboardState = Keyboard::scan();
         rotationUpdate = get_rotation(matrix, keyboardState);
         propertyUpdate = object.get_properties(keyboardState);
