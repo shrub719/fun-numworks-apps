@@ -4,7 +4,8 @@
 #include "trig.h"
 using namespace EADK;
 
-void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
+// replaces a point with its rotation under the current matrix
+void rotate_point(float (&point)[3], float (&matrix)[3][3]) {  // don't ask why the references are like that
     float result[3];
     for (int i = 0; i < 3; ++i) {
         result[i] = 0.0f;
@@ -17,8 +18,8 @@ void rotate_point(float (&point)[3], float (&matrix)[3][3]) {
     point[2] = result[2];
 }
 
-Object::Object() {
-    load_object(2);
+Object::Object() {   // default object
+    load_object(2);  // (a green-ish cube)
     color[0] = 0.0f;
     color[1] = 1.0f;
     color[2] = 0.5f;
@@ -27,9 +28,10 @@ Object::Object() {
     to_coords();
 }
 
+// loads objects using for loops, so the points themselves don't always have to be stored in memory
 void Object::load_object(int id) {
     switch (id) {
-        case 1:
+        case 1:  // donut
             length = 128;
             for (int i = 0; i < 64; i++) {
                 float t = i * 0.1f;
@@ -43,7 +45,7 @@ void Object::load_object(int id) {
                 points[i][2] = 0.15f;
             }
             break;
-        case 2:
+        case 2:  // cube
             int i = 0;
             for (int a = -1; a <= 1; a += 2) {
                 for (int b = -1; b <= 1; b += 2) {
@@ -67,6 +69,8 @@ void Object::load_object(int id) {
     }
 }
 
+// rotates each point in the object one-by-one
+// also insorts points by ascending z-coordinate so that the front ones draw last/on top
 void Object::rotate(float (&matrix)[3][3]) {
     rotate_point(points[0], matrix);
     for (int i = 1; i < length; i++) {
@@ -86,6 +90,9 @@ void Object::rotate(float (&matrix)[3][3]) {
     }
 }
 
+// turns the points array of normalised floats into coordinates on the screen
+// run on the entire list before drawing, storing it in the coords property
+// - it draws faster but requires essentially storing the array twice. good idea? [!]
 void Object::to_coords() {
     for (int i = 0; i < length; i++) {
         int x = 160 + scale * points[i][0];
@@ -97,6 +104,7 @@ void Object::to_coords() {
     }
 }
 
+// iterates over the coordinates and draws them on the screen according to scale, size and color
 void Object::draw() {
     int s = size / 2;
     to_coords();
@@ -112,6 +120,7 @@ void Object::draw() {
     }
 }
 
+// checks input for any property changes (scale, size, object, color)
 bool Object::get_properties(Keyboard::State keyboardState) {
     bool update = false;
 
@@ -171,6 +180,8 @@ bool Object::get_properties(Keyboard::State keyboardState) {
     return update;
 }
 
+// increases/decreases color ensuring no under/overflow
+// [!] would it be better to store colour as eadk_color_t?
 void Object::color_edit(int value, float increaseBy) {
     color[value] += increaseBy;
     if (color[value] <= 0.0f) {
