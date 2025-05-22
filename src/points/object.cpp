@@ -105,6 +105,9 @@ void Object::to_coords() {
 }
 
 // iterates over the coordinates and draws them on the screen according to scale, size and color
+/* [!] on drawing order: points with greater z-value HAVE to be drawn last, but the further on the right side a point is,
+   and the later it is drawn, the more likely it is to be blanked out by vblank. is there some way to slightly prioritise
+   points on the right while still making sure nothing behind gets drawn on top? */
 void Object::draw() {
     int s = size / 2;
     to_coords();
