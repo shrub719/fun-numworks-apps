@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Install C++ toolchain
         uses: numworks/setup-arm-toolchain@latest
-      - name: Run make (3D Viewer)
+      - name: Run make (3D Points])
         run: cd src/points && make
-      - name: Run make (Canvas)
-        run: cd src/canvas && make
+      - name: Run make (Not Calculation)
+        run: cd src/not_calc && make
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
