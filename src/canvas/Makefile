@@ -1,6 +1,6 @@
 Q ?= @
 CC = arm-none-eabi-gcc
-CXX = arm-none-eabi-g++
+CPP = arm-none-eabi-g++
 BUILD_DIR = target
 NWLINK = npx --yes -- nwlink@0.0.19
 LINK_GC = 1
@@ -12,7 +12,7 @@ $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(1))))
 endef
 
 src = main.cpp \
-	  save-load.cpp \
+	  canvas.cpp \
 	  ui.cpp \
 	  storage.c \
 	  icon.png
@@ -66,8 +66,8 @@ $(addprefix $(BUILD_DIR)/,%.o): %.c | $(BUILD_DIR)
 	$(Q) $(CC) $(CFLAGS)$(SFLAGS) -c $^ -o $@
 
 $(addprefix $(BUILD_DIR)/,%.o): %.cpp | $(BUILD_DIR)
-	@echo "CXX     $^"
-	$(Q) $(CXX) $(CPPFLAGS) $(SFLAGS) -c $^ -o $@
+	@echo "CPP     $^"
+	$(Q) $(CPP) $(CPPFLAGS) $(SFLAGS) -c $^ -o $@
 
 $(BUILD_DIR)/icon.o: icon.png
 	@echo "ICON    $<"
