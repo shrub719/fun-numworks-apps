@@ -36,31 +36,6 @@ Adapted from my [Renderer Python script](https://github.com/shrub719/fun-numwork
 `1 / 2`: load donut/cube
 
 
-### Canvas
-
-[Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/canvas.nwa)
-
-A canvas that you can draw on.
-Adapted from my [Canvas Python script](https://github.com/shrub719/fun-numworks-scripts?tab=readme-ov-file#canvas).  
-Now with saving and loading!
-
-#### Controls
-
-`D-Pad`: move cursor  
-`OK`: draw  
-
-`TOOLBOX`: hold to speed up  
-`BACKSPACE`: hold to slow down  
-
-`1`: switch colour to black  
-`2`: switch to white/eraser  
-`4 5 6`: red/green/blue
-
-#### Credits
-
-Huge thanks to Nwagyu for [NumWorks Extapp Storage](https://framagit.org/Yaya.Cout/numworks-extapp-storage/)!
-
-
 ### Not Calculation
 
 [Download](https://github.com/shrub719/fun-numworks-apps/releases/latest/download/not_calc.nwa)
